@@ -43,6 +43,5 @@ process.once('message', function (modulePath) {
   });
 
   var module = require(modulePath);
-
-  module();
+  if (typeof module === 'function') module();
 });

@@ -2,10 +2,14 @@ var cp = require('child_process'),
     fs = require('fs'),
     path = require('path');
 
-var bootstrap = fs.readFileSync(path.join(__dirname, 'bootstrap.js'), { encoding: 'utf8' });
+var bootstrap =
+  fs.readFileSync(path.join(__dirname, 'bootstrap.js'),{ encoding: 'utf8' });
+
 module.exports = Worker;
 function Worker(file, type) {
-  if (type !== 'eval' && type !== 'require') {
+  if (type === true) {
+    type = 'require';
+  } else {
     type = 'eval';
   }
 
