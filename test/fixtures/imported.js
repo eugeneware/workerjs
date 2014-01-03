@@ -1,3 +1,3 @@
-function myfunc() {
-  console.log('myfunc called');
+function myfunc(x) {
+  return x * 2;
 }
