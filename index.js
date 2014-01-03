@@ -2,9 +2,13 @@ var cp = require('child_process'),
     path = require('path');
 
 module.exports = Worker;
-function Worker(file) {
+function Worker(file, type) {
+  if (type !== 'eval' && type !== 'require') {
+    type = 'eval';
+  }
+
   var self = this;
-  this.child = cp.fork(path.join(__dirname, 'forkworker.js'));
+  this.child = cp.fork(path.join(__dirname, type + 'worker.js'));
   this.child.send(file);
   this.child.on('message', function (msg) {
     var parsed = JSON.parse(msg);
