@@ -3,7 +3,7 @@ var cp = require('child_process'),
     path = require('path');
 
 var bootstrap =
-  fs.readFileSync(path.join(__dirname, 'bootstrap.js'),{ encoding: 'utf8' });
+  fs.readFileSync(path.join(__dirname, 'bootstrap.js'), 'utf8');
 
 module.exports = Worker;
 function Worker(file, type) {
@@ -17,7 +17,7 @@ function Worker(file, type) {
   this.child = cp.fork(path.join(__dirname, type + 'worker.js'));
 
   if (type === 'eval') {
-    file = bootstrap + '\n' + fs.readFileSync(file);
+    file = bootstrap + '\n' + fs.readFileSync(file, 'utf8');
   }
   this.child.send(file);
   this.child.on('message', function (msg) {

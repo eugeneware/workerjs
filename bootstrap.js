@@ -21,7 +21,7 @@ global.importScripts = function () {
   var script =
     files
       .map(function (file) {
-        return fs.readFileSync(file, { encoding: 'utf8' });
+        return fs.readFileSync(file, 'utf8');
       })
       .join('\n');
   var vm = require('vm');
