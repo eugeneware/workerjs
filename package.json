@@ -1,6 +1,6 @@
 {
   "name": "workerjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Server Web Workers for node.js that work",
   "main": "index.js",
   "scripts": {
