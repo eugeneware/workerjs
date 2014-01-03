@@ -38,7 +38,7 @@ the event-loop and incoming IO:
 
 ``` js
 // app.js - run with "node app.js"
-var worker = new Worker('fibworker.js');
+var worker = new Worker('/path/to/fibworker.js');
 worker.onmessage = function (msg) {
   expect(msg.data).to.equal(1346269);
 };
@@ -64,7 +64,7 @@ value of `true` through to the second argument of the `Worker` contructor:
 
 ``` js
 // app.js - run with "node app.js"
-var worker = new Worker(fixturePath('gammaworker.js'), true);
+var worker = new Worker('/path/to/gammaworker.js', true);
 worker.addEventListener('message', function (msg) {
   expect(msg.data).to.equal(87178291200.00021);
   done();
@@ -86,7 +86,7 @@ behaviour in [webworkify](https://github.com/substack/webworkify):
 
 ``` js
 // app.js - run with "node app.js"
-var worker = new Worker(fixturePath('gammaworker2.js'), true);
+var worker = new Worker('/path/to/gammaworker2.js', true);
 worker.addEventListener('message', function (msg) {
   expect(msg.data).to.equal(87178291200.00021);
   done();
