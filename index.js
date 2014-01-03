@@ -1,6 +1,8 @@
 var cp = require('child_process'),
+    fs = require('fs'),
     path = require('path');
 
+var bootstrap = fs.readFileSync(path.join(__dirname, 'bootstrap.js'), { encoding: 'utf8' });
 module.exports = Worker;
 function Worker(file, type) {
   if (type !== 'eval' && type !== 'require') {
@@ -9,10 +11,14 @@ function Worker(file, type) {
 
   var self = this;
   this.child = cp.fork(path.join(__dirname, type + 'worker.js'));
+
+  if (type === 'eval') {
+    file = bootstrap + '\n' + fs.readFileSync(file);
+  }
   this.child.send(file);
   this.child.on('message', function (msg) {
     var parsed = JSON.parse(msg);
-    self.onmessage && self.onmessage.call(self, { data: msg });
+    self.onmessage && self.onmessage.call(self, parsed);
   });
   this.child.on('error', function (err) {
     self.onerror && self.onerror(err);
