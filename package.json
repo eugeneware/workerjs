@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Server Web Workers for node.js that work",
   "main": "index.js",
+  "browser": "browser.js",
   "scripts": {
     "test": "node_modules/.bin/mocha"
   },
