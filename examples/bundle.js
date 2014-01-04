@@ -4,5 +4,9 @@ module.exports = window.Worker;
 },{}],2:[function(require,module,exports){
 var Worker = require('..');
 var w = new Worker('worker.js');
+w.onmessage = function (msg) {
+  console.log('from worker: ', msg.data);
+};
+w.postMessage('Hello from web page');
 
 },{"..":1}]},{},[2])
